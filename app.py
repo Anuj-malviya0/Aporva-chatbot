@@ -12,16 +12,14 @@ app = Flask(__name__)
 
 # Configure CORS with specific origins
 CORS(app, resources={
-    r"/api/*": {
-        "origins": [
-            "http://localhost:3000",
-            "http://localhost:5000",
-            "https://your-frontend-domain.onrender.com"  # Replace with your frontend domain
-        ],
-        "methods": ["GET", "POST", "OPTIONS"],
-        "allow_headers": ["Content-Type", "Authorization"]
+    r"/*": {  # Match all routes
+        "origins": "*",  # Allow all origins
+        "methods": ["GET", "POST", "OPTIONS"],  # Allow all common methods
+        "allow_headers": ["Content-Type", "Authorization"],
+        "supports_credentials": True  # Allow credentials (cookies, authorization headers)
     }
 })
+
 
 # Load environment variables
 load_dotenv()
